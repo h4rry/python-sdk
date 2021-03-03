@@ -1,0 +1,19 @@
+from my.app.cisco.amp
+  select *
+  where cluster = "eventlogs"
+  select jsonparse(message) as usrcol1,
+    str(jqeval(jqcompile(".bg"), usrcol1)) as bg,
+    int(jqeval(jqcompile(".tid"), usrcol1)) as tid,
+    int(jqeval(jqcompile(".ts"), usrcol1)) as ts,
+    int(jqeval(jqcompile(".tsns"), usrcol1)) as tsns,
+    str(jqeval(jqcompile(".fg"), usrcol1)) as fg,
+    str(jqeval(jqcompile(".ag"), usrcol1)) as ag,
+    int(jqeval(jqcompile(".id"), usrcol1)) as id,
+    jqeval(jqcompile(".data"), usrcol1) as data,
+    str(jqeval(jqcompile(".data.dnm"), usrcol1)) as dnm,
+    str(jqeval(jqcompile(".av"), usrcol1)) as av,
+    int(jqeval(jqcompile(".tso"), usrcol1)) as tso,
+    int(jqeval(jqcompile(".tsons"), usrcol1)) as tsons,
+    int(jqeval(jqcompile(".tsn"), usrcol1)) as tsn
+  where tid = 1090519054,
+    dnm = "W32.69BBC8926F-100.SBX.TG"
